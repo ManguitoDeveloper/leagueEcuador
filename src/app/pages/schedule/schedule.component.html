@@ -1,0 +1,15 @@
+<div class="heading">
+  <h2>Planificaci&oacute;n</h2>
+  <div class="dates-filter">
+    <date-selector></date-selector>
+  </div>
+</div>
+<p class="selected-day">{{ dataService.selectedDate() }}</p>
+<stadium-selector></stadium-selector>
+<ul class="matches">
+  @for (match of dataService.filteredMatchesByStadium(); track match.id) {
+  <li>
+    <match-card [match]="match"></match-card>
+  </li>
+  }
+</ul>

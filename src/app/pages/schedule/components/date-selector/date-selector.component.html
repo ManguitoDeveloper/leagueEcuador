@@ -1,0 +1,30 @@
+<ng-icon class="icon calendar" name="circumCalendar" size="25px"></ng-icon>
+<ng-icon
+  class="icon prev"
+  name="circumSquareChevLeft"
+  size="25px"
+  (click)="scrollLeft()"
+></ng-icon>
+<div class="track" #scrollContent>
+  <ul>
+    @for (date of this.dataService.dates(); track date.id) {
+    <li [class.selected]="dataService.selectedDate() === date.fechaTexto">
+      <button
+        (click)="dataService.getProgramacion(date.fecha, date.fechaTexto)"
+      >
+        <small>{{ date.fecha | getShortDayOfWeek }}</small>
+        <small
+          >{{ date.fecha.slice(6, 8) }}
+          {{ date.fecha | getShortMonthName }}</small
+        >
+      </button>
+    </li>
+    }
+  </ul>
+</div>
+<ng-icon
+  class="icon next"
+  name="circumSquareChevRight"
+  size="25px"
+  (click)="scrollRight()"
+></ng-icon>

@@ -1,0 +1,40 @@
+<small class="date">FECHA {{ match.fechaNumero }}</small>
+<small class="hour">{{ match.horaTexto }}</small>
+<div class="host" [class.loser]="match.resultadoLocal < match.resultadoVisita">
+  <div class="team-info">
+    <img
+      src="{{
+        match.rutaLogoLocal
+          ? (imageBaseUrl + match.rutaLogoLocal | appendS)
+          : teamLogoPlaceholder
+      }}"
+      width="60"
+      height="60"
+    />
+    <p>{{ match.nombreLocal }}</p>
+  </div>
+
+  <span class="score">{{ match.resultadoLocal }}</span>
+</div>
+<div
+  class="visitor"
+  [class.loser]="match.resultadoVisita < match.resultadoLocal"
+>
+  <div class="team-info">
+    <img
+      src="{{ imageBaseUrl + match.rutaLogoVisita | appendS }}"
+      onerror="this.src='http://deportivo2.edbsharks.com/assets/equipos/escudo.png'"
+      width="60"
+      height="60"
+    />
+    <p>{{ match.nombreVisita }}</p>
+  </div>
+  <span class="score">{{ match.resultadoVisita }}</span>
+</div>
+<p
+  class="state"
+  [class.programed]="match.descripcionEstado == 'Programado'"
+  [class.finished]="match.descripcionEstado == 'Finalizado'"
+>
+  {{ match.descripcionEstado }}
+</p>

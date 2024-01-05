@@ -1,0 +1,59 @@
+@use "variables" as *;
+@use "mixins" as *;
+@use "texts" as *;
+@use "devices" as *;
+
+:host {
+  width: 100%;
+  @include padding-x(1.5em);
+  @include padding-y(1.5em);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr auto;
+}
+.hour,
+.date {
+  margin-bottom: 0.5em;
+  font-weight: 700;
+  opacity: 0.6;
+}
+.hour {
+  text-align: right;
+}
+.host,
+.visitor {
+  grid-column: span 2;
+  @include flexbox(row, space-between, center);
+  width: 100%;
+  .team-info {
+    @include flexbox(row, start, center);
+    column-gap: 1em;
+    p {
+      font-size: nth($fontSizes, 2);
+      max-width: 24ch;
+    }
+  }
+  .score {
+    @include font(title);
+    font-size: nth($fontSizes, 5);
+  }
+  &.loser {
+    opacity: 0.4;
+  }
+}
+
+.state {
+  grid-column: span 2;
+  text-align: center;
+  width: 100%;
+  font-size: nth($fontSizes, 2);
+  font-weight: 700;
+  &.finished {
+    color: crimson;
+    opacity: 0.6;
+  }
+  &.programed {
+    color: coral;
+    opacity: 0.6;
+  }
+}
